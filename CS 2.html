@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter-Strike 2 - Официальный сайт</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid #ff5722;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: #ff5722;
+            font-size: 2.5rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ff5722, #ff9800);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #ff5722;
+            color: #000;
+        }
+        
+        /* Главный баннер */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #e0e0e0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, #ff5722, #ff9800);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.6);
+        }
+        
+        /* Основной контент */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #ff5722, #ff9800);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background-color: rgba(30, 30, 46, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff5722;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #ff5722;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Новости */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .news-card {
+            background-color: rgba(30, 30, 46, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .news-image {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-date {
+            color: #ff9800;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .news-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Особенности CS2 */
+        .cs2-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .cs2-feature {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            background-color: rgba(30, 30, 46, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #ff5722;
+        }
+        
+        /* Системные требования */
+        .requirements {
+            background-color: rgba(30, 30, 46, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .requirement-category h3 {
+            color: #ff9800;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .requirement-list {
+            list-style-type: none;
+        }
+        
+        .requirement-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .requirement-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .requirement-list i {
+            color: #4caf50;
+            margin-right: 10px;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 50px 0 20px;
+            margin-top: 60px;
+            border-top: 2px solid #ff5722;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: #ff9800;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: #ff5722;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-crosshairs logo-icon"></i>
+                <div class="logo-text">COUNTER-STRIKE 2</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">Об игре</a></li>
+                    <li><a href="#features">Особенности</a></li>
+                    <li><a href="#news">Новости</a></li>
+                    <li><a href="#requirements">Системные требования</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>COUNTER-STRIKE 2</h1>
+            <p>Новая эра тактических шутеров. Самый значительный технический скачок в истории Counter-Strike. Играйте бесплатно уже сегодня.</p>
+            <a href="https://www.counter-strike.net/cs2" class="cta-button" target="_blank">Играть бесплатно</a>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Об игре -->
+        <section id="about">
+            <h2 class="section-title">Об игре</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-bullseye feature-icon"></i>
+                    <h3>Тактические сражения</h3>
+                    <p>CS2 — это командный тактический шутер от первого лица, где команды террористов и контр-террористов сражаются за выполнение различных заданий.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-trophy feature-icon"></i>
+                    <h3>Киберспортивная дисциплина</h3>
+                    <p>Одна из самых популярных киберспортивных дисциплин в мире с многомиллионными турнирами и профессиональными лигами.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Играй с друзьями</h3>
+                    <p>Объединяйся с друзьями и вступай в сражения на знаменитых картах, улучшай свои навыки и поднимайся в рейтинге.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Новости -->
+        <section id="news">
+            <h2 class="section-title">Последние новости</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-date">15 марта 2024</div>
+                        <h3>Обновление Gameplay</h3>
+                        <p>Valve выпустила крупное обновление, которое добавляет новые механики и улучшает игровой процесс CS2.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-date">10 марта 2024</div>
+                        <h3>Новая карта "Anubis"</h3>
+                        <p>Добавлена карта Anubis в соревновательный режим. Исследуйте древнеегипетские руины в новом игровом поле.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-date">5 марта 2024</div>
+                        <h3>Турнир PGL Major 2024</h3>
+                        <p>Объявлены даты и место проведения следующего мейджора по CS2. Призовой фонд составит $2,000,000.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Особенности CS2 -->
+        <section id="features">
+            <h2 class="section-title">Особенности CS2</h2>
+            <div class="cs2-features">
+                <div class="cs2-feature">
+                    <h3><i class="fas fa-water" style="color:#2196F3;"></i> Обновленная графика</h3>
+                    <p>Полностью переработанный движок Source 2 с улучшенной графикой, освещением и материалами.</p>
+                </div>
+                <div class="cs2-feature">
+                    <h3><i class="fas fa-tachometer-alt" style="color:#4CAF50;"></i> 128-tick сервера</h3>
+                    <p>Обновленная сетевая архитектура с 128-tick серверами для максимально отзывчивого геймплея.</p>
+                </div>
+                <div class="cs2-feature">
+                    <h3><i class="fas fa-volume-up" style="color:#FF9800;"></i> 3D аудио</h3>
+                    <p>Переработанная аудиосистема для более точного определения положения противника по звуку.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Системные требования -->
+        <section id="requirements">
+            <h2 class="section-title">Системные требования</h2>
+            <div class="requirements">
+                <div class="requirement-category">
+                    <h3>Минимальные требования</h3>
+                    <ul class="requirement-list">
+                        <li><i class="fas fa-check"></i> ОС: Windows 10</li>
+                        <li><i class="fas fa-check"></i> Процессор: Intel Core i5</li>
+                        <li><i class="fas fa-check"></i> Память: 8 GB ОЗУ</li>
+                        <li><i class="fas fa-check"></i> Видеокарта: GTX 1060</li>
+                        <li><i class="fas fa-check"></i> Место на диске: 85 GB</li>
+                    </ul>
+                </div>
+                <div class="requirement-category">
+                    <h3>Рекомендуемые требования</h3>
+                    <ul class="requirement-list">
+                        <li><i class="fas fa-check"></i> ОС: Windows 10/11</li>
+                        <li><i class="fas fa-check"></i> Процессор: Intel Core i7</li>
+                        <li><i class="fas fa-check"></i> Память: 16 GB ОЗУ</li>
+                        <li><i class="fas fa-check"></i> Видеокарта: RTX 3060</li>
+                        <li><i class="fas fa-check"></i> Место на диске: 85 GB SSD</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Counter-Strike 2</h3>
+                    <p>Лучший тактический шутер в мире. Присоединяйтесь к миллионам игроков по всему миру.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-steam"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Полезные ссылки</h3>
+                    <ul class="requirement-list">
+                        <li><a href="https://www.counter-strike.net/cs2" style="color:#aaa; text-decoration:none;">Официальный сайт</a></li>
+                        <li><a href="https://store.steampowered.com/app/730/CounterStrike_2/" style="color:#aaa; text-decoration:none;">Страница в Steam</a></li>
+                        <li><a href="https://blog.counter-strike.net/" style="color:#aaa; text-decoration:none;">Блог разработчиков</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Официальный сайт: counter-strike.net</p>
+                    <p>Поддержка: Steam Support</p>
+                    <p>Разработчик: Valve Corporation</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Counter-Strike 2 Fan Site. Этот сайт не является официальным. Все права на игру принадлежат Valve Corporation.</p>
+                <p>Сайт создан для образовательных целей.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка к разделам
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Добавление эффекта при прокрутке
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+        
+        // Анимация карточек при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Применяем анимацию к карточкам
+        document.querySelectorAll('.feature-card, .news-card, .cs2-feature').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
